@@ -34,8 +34,9 @@ public:
     // Throw std::invalid_argument if value < -273.15
     explicit Temperature(double celsius) {
         // TODO: Validate and set celsius_
-        if (celsius < -273.15)
-            throw invalid_argument("Invalid Temperature");
+        if (celsius < -273.15){
+            throw invalid_argument("Temperature cannot be below absolute zero (-273.15)");
+        }
         celsius_ = celsius;
     }
 
@@ -57,8 +58,9 @@ public:
     // Throw std::invalid_argument if value < -273.15
     void setCelsius(double celsius) {
         // TODO: Implement
-        if (celsius < -273.15)
-            throw invalid_argument("Invalid Temperature");
+        if (celsius < -273.15){
+            throw invalid_argument("Temperature cannot be below absolute zero (-273.15)");
+        }
         celsius_ = celsius;
     }
 };
@@ -81,16 +83,14 @@ public:
     BankAccount(const string& owner, double initialBalance) {
         // TODO: Validate and set members
         if (owner.empty()){
-            throw invalid_argument("Invalid User");
+            throw invalid_argument("Owner name cannot be empty");
         }
-        if (initialBalance < 0){
-            throw invalid_argument("Invalid Balance");
+        if(initialBalance < 0){
+            throw invalid_argument("Initial Balance cannot be negative");
         }
         owner_ = owner;
         balance_ = initialBalance;
     }
-
-
 
     // Getter: return the owner's name
     string getOwner() const {
@@ -108,23 +108,23 @@ public:
     // Throw std::invalid_argument if amount <= 0
     void deposit(double amount) {
         // TODO: Implement
-        if (amount <= 0){
+        if (amount <= 0 ){
             throw invalid_argument("Deposit amount must be positive");
         }
         balance_ += amount;
-    };
+    }
 
     // Withdraw money from the account.
     // Throw std::invalid_argument if amount <= 0
     // Throw std::runtime_error if insufficient funds
     void withdraw(double amount) {
         // TODO: Implement
-        if (amount <= 0){
-                throw invalid_argument("Withdrawal amount must be positive");
+        if (amount <= 0 ){
+            throw invalid_argument("Withdrawal amount must be positive");
         }
-        if (amount > balance_){
-                throw runtime_error("Insufficient funds");
-        } 
+        if (amount > balance_ ){
+            throw runtime_error("Insufficient funds");
+        }
         balance_ -= amount;
     }
 
@@ -133,7 +133,7 @@ public:
     // Throw std::runtime_error if insufficient funds
     void transfer(BankAccount& other, double amount) {
         // TODO: Implement using withdraw() and deposit()
-        if (amount <= 0){
+        if (amount <= 0 ){
             throw runtime_error("Transfer amount must be positive");
         }
         withdraw(amount);
@@ -168,7 +168,7 @@ private:
         // TODO: Check length >= 8 and hasDigit
         // Throw std::invalid_argument with descriptive message if invalid
         if (pwd.length() < 8){
-            throw invalid_argument("Password must be at least 8 characters long. ");
+            throw invalid_argument("Password must be at least 8 characters long.");
         }
         if (!hasDigit(pwd)){
             throw invalid_argument("Password must contain atleast one digit");
@@ -182,16 +182,14 @@ public:
         // TODO: Validate and set password_
         validate(pwd);
         password_ = pwd;
-        
     }
 
     // Change password: old password must match, new must be valid.
     // Throw std::invalid_argument if oldPassword doesn't match
     // Throw std::invalid_argument if newPassword fails validation
     void change(const string& oldPassword, const string& newPassword) {
-        // TODO: Implement
         if (oldPassword != password_){
-            throw invalid_argument("Old password does not match");
+            throw invalid_argument("OLd password does not match");
         }
         validate(newPassword);
         password_ = newPassword;
@@ -206,7 +204,7 @@ public:
     // Return the length of the password (safe to expose)
     size_t getLength() const {
         // TODO: Implement
-        return password_ .length();
+        return password_.length();
     }
 
     // NOTE: There is deliberately NO getPassword() method.
