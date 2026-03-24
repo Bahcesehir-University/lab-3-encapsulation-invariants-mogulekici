@@ -80,7 +80,7 @@ public:
     // Throw std::invalid_argument if owner is empty or balance < 0
     BankAccount(const string& owner, double initialBalance) {
         // TODO: Validate and set members
-        if (owner .empty()){
+        if (owner.empty()){
             throw invalid_argument("Invalid User");
         }
         if (initialBalance < 0){
@@ -124,7 +124,8 @@ public:
         }
         if (amount > balance_){
             throw runtime_error("Insufficient funds");
-        }        
+        } 
+        balance_ -= amount;
     }
 
     // Transfer money from this account to another.
