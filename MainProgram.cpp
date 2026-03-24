@@ -7,7 +7,7 @@
 //   Do NOT modify function signatures or class interfaces.
 //   All logic must remain in this single file.
 // ============================================================
- 
+
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -120,10 +120,10 @@ public:
     void withdraw(double amount) {
         // TODO: Implement
         if (amount <= 0){
-            throw invalid_argument("Withdrawal amount must be positive");
+                throw invalid_argument("Withdrawal amount must be positive");
         }
         if (amount > balance_){
-            throw runtime_error("Insufficient funds");
+                throw runtime_error("Insufficient funds");
         } 
         balance_ -= amount;
     }
