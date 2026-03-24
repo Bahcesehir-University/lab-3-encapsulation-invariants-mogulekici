@@ -7,7 +7,7 @@
 //   Do NOT modify function signatures or class interfaces.
 //   All logic must remain in this single file.
 // ============================================================
-
+ 
 #include <iostream>
 #include <string>
 #include <stdexcept>
